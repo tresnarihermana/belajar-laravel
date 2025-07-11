@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     {{ $posts->links() }}
-    {{-- <section class="bg-white dark:bg-gray-900"> --}}
+    {{-- <section class="bg-white 0"> --}}
     <div class="my-4 py-4 px-4 mx-auto max-w-screen-xl lg:py-9">
 <x-search-bar> </x-search-bar>
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -19,25 +19,25 @@
         <a href="/posts/{{ $post['slug'] }}" class="font-medium text-blue-500 hover:underline">Baca Selengkapnya &raquo;</a>
     </article> --}}
                 <article
-                    class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                    class="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <span
-                            class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
+                            class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded -200 ry-800">
                             <a href="/posts?category={{ $post->category->slug }}"> {{ $post->category->name }}</a>
                         </span>
                         <span class="text-sm">{{ $post->created_at->format('j F Y') }}</span>
                     </div>
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 "><a
                             href="/posts/{{ $post->slug }}">{{ $post->title }}</a></h2>
-                    <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($post['body'], 190) }}</p>
+                    <p class="mb-5 font-light text-gray-500 400">{{ Str::limit($post['body'], 190) }}</p>
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-4">
-                            <span class="font-medium dark:text-white">
+                            <span class="font-medium ">
                                 <a href="/posts?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                             </span>
                         </div>
                         <a href="/posts/{{ $post['slug'] }}"
-                            class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                            class="inline-flex items-center font-medium text-primary-600 ry-500 hover:underline">
                             Read more
                             <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -59,3 +59,4 @@
         {{ $posts->links() }}
     {{-- </section> --}}
 </x-layout>
+<x-footbar></x-footbar>
