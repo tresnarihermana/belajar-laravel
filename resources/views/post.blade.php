@@ -30,7 +30,7 @@ URL: https://flowbite.com/docs/components/typography/
                       <div>
                           <a href="/posts?author={{ $post->author->username}}" rel="author" class="text-xl font-bold text-gray-900">{{ $post->author->name }}</a>
                           <p class="text-base text-gray-500">{{ $post->created_at->format('j F Y') }}</p>
-                          <a href="/posts?category={{ $post->category->slug }}"><p class="bg-{{ $post->category->color }}-100 text-base text-primary-80 px-2.5 py-0.5 rounded inline-c text-medium dark:bg-primary-200 dark:text-primary-800 items-center inline-flex">{{ $post->category->name }}</p></a>
+                          <a href="/posts?category={{ $post->category->slug }}"><p class="bg-{{ $post->category->color }}-100 text-base text-primary-80 px-2.5 py-0.5 rounded inline-c text-medium items-center inline-flex">{{ $post->category->name }}</p></a>
                         </div>
                   </div>
               </address>
@@ -41,4 +41,3 @@ URL: https://flowbite.com/docs/components/typography/
     </article>
 
 </x-layout>
-<x-footbar></x-footbar>

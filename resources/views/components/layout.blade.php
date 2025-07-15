@@ -25,5 +25,5 @@
     </div>
     
 </body>
-
 </html>
+<x-footbar></x-footbar>

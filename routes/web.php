@@ -1,24 +1,43 @@
 <?php
 
-use App\Models\Category;
+
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Route;
 use PHPUnit\Event\TestSuite\Loaded;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('home' , ['title' => 'Home Page']);
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard' , ['title' => 'Home Page']);
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
 Route::get('/about', function () {
     return view('about', ['title' => 'About us']);
 });
 Route::get('/posts', function () {
-    return view('posts', ['title' => 'Blog', 'posts'=> Post::filter(request(['search' , 'category', 'author']))->latest()->paginate(6)->withQueryString() ]);
+    return view('posts', ['title' => 'Blog', 'posts'=> Post::filter(request(['search' , 'category', 'author']))->latest()->paginate(20)->withQueryString() ]);
 });
 
 Route::get('/posts/{post:slug}' , function(Post $post){
     return view('post', ['title' => 'Single Post', 'post' => $post ]);
+});
+Route::get('/submit' , function(){
+    return view('submit', ['title' => 'Submit Blog anda']);
 });
 
 Route::get('/contact', function () {
@@ -32,4 +51,4 @@ Route::get('/categories/{category:slug}' , function (Category $category){
     //   $posts = $category->posts->Load('category', 'author');
     return view('posts', ['title' => count($category->posts) .' Articel in ' . $category->name, 'posts'=> $category->posts]);
 });
- 
+require __DIR__.'/auth.php';

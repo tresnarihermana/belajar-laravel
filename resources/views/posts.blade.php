@@ -22,7 +22,7 @@
                     class="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <span
-                            class="bg-{{ $post->category->color }}-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded -200 ry-800">
+                            class="bg-{{ $post->category->color }}-100 text-black-500 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded -200 ry-800">
                             <a href="/posts?category={{ $post->category->slug }}"> {{ $post->category->name }}</a>
                         </span>
                         <span class="text-sm">{{ $post->created_at->format('j F Y') }}</span>
@@ -59,4 +59,3 @@
         {{ $posts->links() }}
     {{-- </section> --}}
 </x-layout>
-<x-footbar></x-footbar>
